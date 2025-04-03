@@ -1,5 +1,3 @@
-Here's a professional yet human README.md for OxideBuild:
-
 ---
 
 # OxideBuild
