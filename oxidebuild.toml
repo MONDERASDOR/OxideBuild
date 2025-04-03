@@ -1,8 +1,0 @@
-[project]
-name = "oxidebuild"
-version = "0.1.0"
-authors = ["Monderasdor <monderasdor@gmail.com>"]
-
-[build]
-out_dir = "target/oxide"
-targets = ["linux", "windows"]
