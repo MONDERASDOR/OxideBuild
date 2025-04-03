@@ -1,42 +1,88 @@
-# Rust Template [![Github Actions][gha-badge]][gha] [![License: MIT][license-badge]][license]
+Here's a professional yet human README.md for OxideBuild:
 
-[gha]: https://github.com/PaulRBerg/rust-template/actions
-[gha-badge]: https://github.com/PaulRBerg/rust-template/actions/workflows/ci.yml/badge.svg
-[license]: https://opensource.org/licenses/MIT
-[license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
+---
 
-A template for developing Rust projects, with sensible defaults.
+# OxideBuild
 
-## Getting Started
+**A Multi-Platform Rust Build Tool That Actually Works**
 
-Click the [`Use this template`](https://github.com/PaulRBerg/rust-template/generate) button at the top of the page to
-create a new repository with this repo as the initial state.
+## What's This About?
 
-## Features
+OxideBuild is what happens when you get tired of manually typing `cargo build --release --target=whatever` for the hundredth time. It's a build tool that handles the boring stuff so you can get back to writing code that matters.
 
-### Sensible Defaults
+## Installation
 
-This template comes with sensible default configurations in the following files:
+First, make sure you have Rust installed (if you don't, we'll wait while you [fix that](https://www.rust-lang.org/tools/install)).
 
-```text
-├── .editorconfig
-├── .gitignore
-├── .prettierrc.yml
-├── Cargo.toml
-└── rustfmt.toml
+Then:
+
+```bash
+cargo install --git https://github.com/yourusername/oxidebuild.git
 ```
 
-### GitHub Actions
+For full cross-compilation support, run the setup script:
 
-This template comes with GitHub Actions pre-configured. Your code will be linted and tested on every push and pull
-request made to the `main` branch.
+```bash
+curl -sSL https://github.com/yourusername/oxidebuild/scripts/post_install.sh | bash
+```
 
-You can edit the CI script in [.github/workflows/ci.yml](./.github/workflows/ci.yml).
+## Quick Start
 
-## Usage
+1. Create an `oxidebuild.toml` in your project root:
 
-See [The Rust Book](https://doc.rust-lang.org/book/) and [The Cargo Book](https://doc.rust-lang.org/cargo/index.html).
+```toml
+[project]
+name = "your_shiny_crate"
+version = "0.1.0"
+authors = ["You <you@example.com>"]
+
+[build]
+out_dir = "build_output"
+targets = ["linux", "windows"] # Because we're inclusive like that
+```
+
+2. Build your project like a pro:
+
+```bash
+oxidebuild build --profile release
+```
+
+3. Deploy it somewhere useful:
+
+```bash
+oxidebuild deploy --destination /path/to/your/server
+```
+
+## Features That Won't Make You Sigh
+
+- **Multi-platform builds** - Linux, Windows, macOS. No favoritism here.
+- **Sensible defaults** - Because guessing build parameters is nobody's idea of fun.
+- **Cross-compilation** - Build for platforms you don't even own.
+- **One-command deployment** - Move your builds where they need to go.
+- **Clean builds** - Remove artifacts like a responsible adult.
+
+## When Should You Use This?
+
+- You're tired of remembering cargo flags
+- You need consistent builds across different platforms
+- You want deployment to be someone else's problem (where "someone else" is OxideBuild)
+- You like tools that do what you tell them
+
+## When Should You Not Use This?
+
+- You enjoy typing long cargo commands
+- You prefer manually copying build artifacts
+- You think build tools should be more complicated
+- You're writing a "Hello World" program
+
+## Contributing
+
+Found a bug? Have an idea? We accept pull requests and constructive criticism (emphasis on constructive). 
+
+1. Fork it
+2. Fix it
+3. Send it
 
 ## License
 
-This project is licensed under MIT.
+MIT. Do what you want with it, just don't blame us if it doesn't make coffee.
