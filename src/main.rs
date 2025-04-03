@@ -1,28 +1,37 @@
-use serde::Serialize;
+use clap::{Parser, Subcommand};
+use anyhow::Result;
 
-#[derive(Serialize, Debug)]
-struct Point {
-    x: i32,
-    y: i32,
+mod commands;
+mod config;
+mod error;
+mod platform;
+mod utils;
+
+#[derive(Parser)]
+#[command(name = "OxideBuild")]
+#[command(version)]
+#[command(about = "Multi-platform Rust build tool")]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
 }
 
-fn main() {
-    println!("Hello, world!");
-
-    let point = Point { x: 1, y: 2 };
-
-    // Convert the Point to a JSON string.
-    let serialized = serde_json::to_string(&point).unwrap();
-
-    // Prints serialized = {"x":1,"y":2}
-    println!("Serialized point = {}", serialized);
+#[derive(Subcommand)]
+enum Commands {
+    Build(commands::build::BuildArgs),
+    Clean(commands::clean::CleanArgs),
+    Test(commands::test::TestArgs),
+    Deploy(commands::deploy::DeployArgs),
 }
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
+fn main() -> Result<()> {
+    env_logger::init();
+    let cli = Cli::parse();
+
+    match cli.command {
+        Commands::Build(args) => commands::build::execute(args),
+        Commands::Clean(args) => commands::clean::execute(args),
+        Commands::Test(args) => commands::test::execute(args),
+        Commands::Deploy(args) => commands::deploy::execute(args),
     }
 }
