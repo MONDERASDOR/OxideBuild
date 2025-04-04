@@ -15,13 +15,13 @@ First, make sure you have Rust installed (if you don't, we'll wait while you [fi
 Then:
 
 ```bash
-cargo install --git https://github.com/yourusername/oxidebuild.git
+cargo install --git https://github.com/MONDERASDOR/oxidebuild.git
 ```
 
 For full cross-compilation support, run the setup script:
 
 ```bash
-curl -sSL https://github.com/yourusername/oxidebuild/scripts/post_install.sh | bash
+curl -sSL https://github.com/MONDERADOR/oxidebuild/scripts/post_install.sh | bash
 ```
 
 ## Quick Start
